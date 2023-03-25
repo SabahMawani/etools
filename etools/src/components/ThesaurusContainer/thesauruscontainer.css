@@ -1,0 +1,58 @@
+.t_background{
+	background-color: white;
+}
+
+.t_heading{
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size:xx-large;
+	font-weight:900;
+	text-align: center;
+}
+
+.t_input{
+	background-color: rgb(208, 190, 216);
+	width: 30ch;
+	margin-left: 6%;
+	padding-left: 2ch;
+	border-radius: 2cm;
+	padding-top: 1ch;
+	padding-bottom: 1ch;
+}
+
+.t_output{
+	background-color: rgb(208, 190, 216);
+	width: 80%;
+	margin-left: 5%;
+	margin-right: 5%;
+	border: 1cm;
+	border-radius: 1cm;
+	border-color: black;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 1ch;
+	padding-bottom: 1ch;
+	margin-top: 1ch;
+	margin-bottom: 1ch;
+}
+
+.t_button{
+	background-color: rgb(45, 3, 59);
+	margin-left: 2ch;
+	border-radius: 2ch;
+	color: white;
+	padding-left: 1ch;
+	padding-top: 1ch;
+	padding-bottom: 1ch;
+	padding-right: 1ch;
+}
+
+.t_button:hover{
+	background-color: rgb(208, 190, 216);
+	color: black;
+}
+
+.t_button:active{
+	background-color: rgb(182, 103, 216);
+	box-shadow: 2ch;
+	color: black;
+}
