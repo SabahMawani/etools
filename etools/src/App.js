@@ -4,7 +4,8 @@ import UserContext from './components/UserContext';
 import {BrowserRouter as Router, Switch, Route, Routes, Navigate, useNavigate, json} from 'react-router-dom';
 import axios from 'axios';
 import {
-  Thesaurus
+  Thesaurus,
+  TypeMaster
 } from './pages';
 function App() {
 
@@ -32,6 +33,9 @@ function App() {
       <Router>
         <Routes>
           <Route path='/thesaurus' element={<Thesaurus />} />
+        </Routes>
+        <Routes>
+          <Route path='/typemaster' element={<TypeMaster />} />
         </Routes>
       </Router>
     </UserContext.Provider>
