@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './thesauruscontainer.css';
+import TImg from './../../assets/thesaurus.jpg';
 import axios from 'axios';
 
 function ThesaurusContainer(props)
@@ -20,8 +21,12 @@ function ThesaurusContainer(props)
   	};
 	return(
 		<>
-			<div>
-				<h3 className='t_heading'>Thesaurus</h3>
+			<div className="t-container">
+				<img className='tbg-img' src={TImg} alt="background" />
+				<div className="timg-shadow"></div>
+				<h1>Thesaurus</h1>
+			</div>
+			<div className='t-main'>
 				<input className='t_input' type="text" value={word} onChange={e => setWord(e.target.value)} />
 				<button className='t_button' onClick={getSynonymsAntonyms}>Generate</button>
 				<div className='t_output'>
