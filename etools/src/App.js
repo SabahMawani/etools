@@ -5,7 +5,8 @@ import {BrowserRouter as Router, Switch, Route, Routes, Navigate, useNavigate, j
 import axios from 'axios';
 import {
   Thesaurus,
-  TypeMaster
+  TypeMaster,
+  TextOptimizer
 } from './pages';
 function App() {
 
@@ -36,6 +37,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path='/typemaster' element={<TypeMaster />} />
+        </Routes>
+        <Routes>
+          <Route path='/textoptimizer' element={<TextOptimizer />} />
         </Routes>
       </Router>
     </UserContext.Provider>
