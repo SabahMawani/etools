@@ -6,7 +6,8 @@ import axios from 'axios';
 import {
   Thesaurus,
   TypeMaster,
-  TextOptimizer
+  TextOptimizer,
+  Quiz
 } from './pages';
 function App() {
 
@@ -40,6 +41,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path='/textoptimizer' element={<TextOptimizer />} />
+        </Routes>
+        <Routes>
+          <Route path='/quiz' element={<Quiz />} />
         </Routes>
       </Router>
     </UserContext.Provider>
