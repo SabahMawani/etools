@@ -11,13 +11,16 @@ const Navbar = () =>{
                               <a href='/profile'>Profile</a>
                             </li>
                             <li>
-                                <a href='/'>ContactUs</a>
+                                <a href='/ContactUs'>ContactUs</a>
                             </li>
                             <li>
                               <a href="/login">Page 3</a>
                             </li>
                             <li>
-                              <a href="/Profile">Page 3</a>
+                              <a href="/Axios">Axios</a>
+                            </li>
+                            <li>
+                              <a href="/signup">signup</a>
                             </li>
                         </ul>
                     </div>
