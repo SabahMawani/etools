@@ -21,6 +21,9 @@ const Navbar = () =>{
                               <a href='/TypeMaster'>TypeMaster</a>
                             </li>
                             <li>
+                              <a href='/Quiz'>Quiz</a>
+                            </li>
+                            <li>
                               <a href='/Notes'>Notes</a>
                             </li>
                             <li>

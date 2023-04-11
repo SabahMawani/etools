@@ -1,16 +1,49 @@
 import React,{Component} from 'react';
+import axios from 'axios';
 class ContactUs extends Component{
     state = {
         username : null,
-        Email : null ,
-        Comment : ''
+        email : null ,
+        comment : '',
+        submitstatus:false,
+        commentstatus:false,
+        emailstatus:false,
+        usernamestatus:false
     }
     handleChange = (e) => {
         this.setState({[e.target.id]: e.target.value})}
 
     handleSubmit = (e) => {
          e.preventDefault();
-        alert("Feedback Submitted")
+         const {username ,comment ,email,submitstatus,emailstatus,commentstatus,usernamestatus} = this.state ;
+         if(username && comment && email)
+         {
+            axios.post('filepathhere',{username,email,comment})
+            .then((response)=>{
+                alert("Feedback Submitted")
+            })
+            /**Set error in form submission*/
+            .catch((error)=>{
+                alert('Form submission error')
+                this.setState({submitstatus:true});
+            })
+         }
+         else
+         {
+            if(!username){
+                this.setState({usernamestatus:true});
+            }
+            if(!comment){
+                this.setState({commentstatus:true});
+            }
+            if(!email){
+                this.setState({emailstatus:false});
+            }
+            if(!username || !email || !comment){
+                this.setState({submitstatus:true})
+            }
+         }
+
     }
     render(){
         return(
@@ -18,6 +51,7 @@ class ContactUs extends Component{
         )
     }
     ContactUs = () =>{
+        const {submitstatus,emailstatus,commentstatus,usernamestatus} = this.state ;
         return(
             <div>
                 <div class='container'>
@@ -29,15 +63,19 @@ class ContactUs extends Component{
                                 <label htmlFor="username">Username</label>
                                 <input type="text" id="username" onChange={this.handleChange} />
                             </div>
+                            {usernamestatus && <p>Enter Username</p>}
                             <div>
                                 <label htmlFor="Email">Email</label>
-                                <input type="Email" id="Email" onChange={this.handleChange} />
+                                <input type="Email" id="email" onChange={this.handleChange} />
                             </div>
+                            {emailstatus && <p>Enter Email</p>}
                             <div>
                                 <label htmlFor="Comment">Comment</label>
-                                <input type="text" id="Comment"  onChange={this.handleChange} />
+                                <input type="text" id="comment"  onChange={this.handleChange} />
                             </div>
+                            {commentstatus && <p>Enter Comment</p>}
                             <button type="submit">Post</button>
+                            {submitstatus && <p>Thanks For Feedback</p>}
                         </form>
                         </div>
                         <div class='col-lg-3 col-3'></div>

@@ -1,12 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Mainnav = () =>{
     /* Using useHistory hook to setting up navigations  */
+    const navigate = useNavigate();
     const handlelogin = () =>{
-
+        navigate('/LogIn');
     }
     const handlesignup = () =>{
-
+        navigate('/Signup');
     }
     return(
         <div>

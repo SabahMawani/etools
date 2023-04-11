@@ -6,3 +6,4 @@ export {default as CU} from './ContactUs/ContactUs';
 export {default as N} from './Notes/Notes';
 export {default as NB} from './Navbar/NavBar';
 export {default as P} from './Profile/Profile';
+export {default as Main} from './Main/main';

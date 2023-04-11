@@ -1,7 +1,5 @@
 import React,{useState} from "react";
 import axios from 'axios';
-import './login.css';
-import './ext.css';
 const Signup =()=>{
     const[name,setname] = useState('')
     const[nameerror,setnameerror] = useState(false)

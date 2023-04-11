@@ -15,6 +15,7 @@ import {
   NB, /*Navbar*/
   N,
   P, /*Profile*/
+  Main
 } from './pages';
 function App() {
 
@@ -40,14 +41,15 @@ function App() {
   return (
     /*<UserContext.Provider value={data}>*/
     <div>
-    <NB />
+       <Main />
+    {/*<NB />
       <Router>
         {/*Profile Page Will be default page for user once logged in */}
-        <Routes>
+       {/*} <Routes>
           <Route path='/' element={<P />} />
         </Routes>
         {/*-----------------------Other pages---------------------------*/}
-        <Routes>
+        {/*<Routes>
           <Route path='/thesaurus' element={<Thesaurus />} />
         </Routes>
         <Routes>
@@ -65,7 +67,7 @@ function App() {
         <Routes>
           <Route path='/Notes' element={<N />} />
         </Routes>
-      </Router>
+  </Router>*/}
       </div>
     /*</UserContext.Provider>*/
   );
