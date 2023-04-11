@@ -9,18 +9,8 @@ class ContactUs extends Component{
         this.setState({[e.target.id]: e.target.value})}
 
     handleSubmit = (e) => {
-        var input = prompt('Are you Sure ?')
-        if (input === 'Yes')
-        {
          e.preventDefault();
-        console.log(this.state);
-        }
-        else
-        {
-            e.Default()
-            alert('Wrong Choice !')
-        }
-        
+        alert("Feedback Submitted")
     }
     render(){
         return(

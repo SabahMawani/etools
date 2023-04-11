@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-function user1(){
+function Profile(){
     const [username,setusername] = useState('')
     const [userid,setuserid] = useState('123')
     const [email,setemail] = useState('@xyz.com')
@@ -11,7 +11,7 @@ function user1(){
     useEffect(()=>{
         axios.get('path')
         .then((response)=>{
-            data = response.data
+            const data = response.data
             setusername(data.username);
             setuserid(data.userid);
             setemail(data.email);
@@ -34,4 +34,4 @@ function user1(){
         </div>
     );
 }
-export default user1;
+export default Profile;

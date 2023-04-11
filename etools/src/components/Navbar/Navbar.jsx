@@ -1,27 +1,40 @@
 import React from "react";
 const Navbar = () =>{
     return(
-        <nav className='nav-wrapper black darken-3'>
+        <nav className='nav-wrapper rgb(45, 3, 59) darken-3'>
             <div className='container'>
                 <div className='row'>
                     <a className='brand-logo'>E-Tools</a>
                     <div >
                         <ul className='right'>
                             <li>
-                              <a href='/profile'>Profile</a>
+                              {/*Profile page will be our default page */}
+                              <a href='/'>Profile</a>
+                            </li>
+                            <li>
+                              <a href='/Thesaurus'>Thesaurus</a>
+                            </li>
+                            <li>
+                              <a href='/TextOptimizer'>TextOptimizer</a>
+                            </li>
+                            <li>
+                              <a href='/TypeMaster'>TypeMaster</a>
+                            </li>
+                            <li>
+                              <a href='/Notes'>Notes</a>
                             </li>
                             <li>
                                 <a href='/ContactUs'>ContactUs</a>
                             </li>
-                            <li>
-                              <a href="/login">Page 3</a>
+                            {/*<li>
+                              <a href="/"></a>
                             </li>
                             <li>
                               <a href="/Axios">Axios</a>
                             </li>
                             <li>
                               <a href="/signup">signup</a>
-                            </li>
+                            </li>*/}
                         </ul>
                     </div>
                 </div>                
