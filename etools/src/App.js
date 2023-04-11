@@ -1,7 +1,7 @@
 import React, { useState, useContext, createContext, useEffect } from 'react';
 import './App.css';
 /*import UserContext from './components/UserContext';*/
-import {BrowserRouter as Router, Switch, Route, Routes, Navigate, useNavigate, json} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, Navigate, useNavigate, json} from 'react-router-dom';
 import axios from 'axios';
 import 'materialize-css/dist/css/materialize.min.css';
 
