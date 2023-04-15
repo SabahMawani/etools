@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import UserContext from '../UserContext';
 function Profile(){
+    const {handleLogout} = useContext(UserContext)
     const [username,setusername] = useState('')
     const [userid,setuserid] = useState('123')
     const [email,setemail] = useState('@xyz.com')
@@ -23,14 +25,20 @@ function Profile(){
             alert('Error');
         })
     } , []);
+    const handleclick = () =>{
+        handleLogout();
+    }
     return(
         <div>
             <h2>Welcome to E-tools {username}</h2>
-            <p className='profile left'>User ID : {userid}</p>
-            <p className='profile right'>Email : {email}</p>
-            <p className='profile left'>Gender : {gender}</p>
-            <p className='profile rightt'>Quiz High Score : {quiz}</p>
-            <p className='profile left'>Typing High Score : {type}</p>
+            <p className=''>User ID : {userid}</p>
+            <p className=''>Email : {email}</p>
+            <p className=''>Gender : {gender}</p>
+            <p className=''>Quiz High Score : {quiz}</p>
+            <p className=''>Typing High Score : {type}</p>
+            <div className='tobtn-group'>
+            <button onClick={handleclick}>Logout</button>
+            </div>
         </div>
     );
 }

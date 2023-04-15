@@ -1,8 +1,9 @@
-import React, { useState, useContext, createContext, useEffect } from 'react';
+import React, { useState,  useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes ,vigate } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import UserContext from './components/UserContext';
+
 import {
   Thesaurus,
   TypeMaster,
@@ -14,10 +15,8 @@ import {
   P, /*Profile*/
   Main
 } from './pages';
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-
   // Load loggedIn state from localStorage on component mount
   useEffect(() => {
     const storedLoggedIn = localStorage.getItem('loggedIn');
@@ -25,7 +24,7 @@ function App() {
       setLoggedIn(JSON.parse(storedLoggedIn));
     }
   }, []);
-
+  /*move user to profile page*/
   /*used in login component*/
   const handleLogin = () => {
     setLoggedIn(true);
