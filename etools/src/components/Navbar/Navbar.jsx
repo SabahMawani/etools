@@ -29,15 +29,6 @@ const Navbar = () =>{
                             <li>
                                 <a href='/ContactUs'>ContactUs</a>
                             </li>
-                            {/*<li>
-                              <a href="/"></a>
-                            </li>
-                            <li>
-                              <a href="/Axios">Axios</a>
-                            </li>
-                            <li>
-                              <a href="/signup">signup</a>
-                            </li>*/}
                         </ul>
                     </div>
                 </div>                

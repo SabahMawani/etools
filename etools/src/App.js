@@ -1,11 +1,8 @@
 import React, { useState, useContext, createContext, useEffect } from 'react';
 import './App.css';
-/*import UserContext from './components/UserContext';*/
-import {BrowserRouter as Router, Route, Routes, Navigate, useNavigate, json} from 'react-router-dom';
-import axios from 'axios';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
-
-/*Importing Components from Index.js in pages*/
+import UserContext from './components/UserContext';
 import {
   Thesaurus,
   TypeMaster,
@@ -17,62 +14,76 @@ import {
   P, /*Profile*/
   Main
 } from './pages';
+
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
 
-/*  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Load loggedIn state from localStorage on component mount
+  useEffect(() => {
+    const storedLoggedIn = localStorage.getItem('loggedIn');
+    if (storedLoggedIn) {
+      setLoggedIn(JSON.parse(storedLoggedIn));
+    }
+  }, []);
 
+  /*used in login component*/
+  const handleLogin = () => {
+    setLoggedIn(true);
+    localStorage.setItem('loggedIn', JSON.stringify(true)); // Store loggedIn state in localStorage
+  };
+
+  /*used in logout component*/
+  const handleLogout = () => {
+    setLoggedIn(false);
+    localStorage.removeItem('loggedIn'); // Remove loggedIn state from localStorage
+  };
+
+  /*values to be passed in user context*/
   const data = {
-    user,
-    isLoading,
-    isLoggedIn,
-    setUser,
-    setIsLoading,
-    setIsLoggedIn
+    loggedIn,
+    handleLogin,
+    handleLogout // Add handleLogout to data
   }
 
-  useEffect(() => {
-    setIsLoading(true);
-    setUser(JSON.parse(sessionStorage.getItem("user")));
-    setIsLoading(false);
-  }, [])
-*/
   return (
-    /*<UserContext.Provider value={data}>*/
-    <div>
-       <Main />
-    {/*<NB />
-      <Router>
-        {/*Profile Page Will be default page for user once logged in */}
-       {/*} <Routes>
-          <Route path='/' element={<P />} />
-        </Routes>
-        {/*-----------------------Other pages---------------------------*/}
-        {/*<Routes>
-          <Route path='/thesaurus' element={<Thesaurus />} />
-        </Routes>
-        <Routes>
-          <Route path='/typemaster' element={<TypeMaster />} />
-        </Routes>
-        <Routes>
-          <Route path='/textoptimizer' element={<TextOptimizer />} />
-        </Routes>
-        <Routes>
-          <Route path='/quiz' element={<Quiz />} />
-        </Routes>
-        <Routes>
-          <Route path='/ContactUs' element={<CU />} />
-        </Routes>
-        <Routes>
-          <Route path='/Notes' element={<N />} />
-        </Routes>
-  </Router>*/}
+    <UserContext.Provider value={data}>
+      <div>
+        {!loggedIn &&
+          <div>
+            <Main />
+          </div>}
+        {loggedIn &&
+          <div>
+            <NB />
+            <Router>
+              {/*Profile Page Will be default page for user once logged in */}
+              <Routes>
+                <Route path='/' element={<P />} />
+              </Routes>
+              {/*-----------------------Other pages---------------------------*/}
+              <Routes>
+                <Route path='/thesaurus' element={<Thesaurus />} />
+              </Routes>
+              <Routes>
+                <Route path='/typemaster' element={<TypeMaster />} />
+              </Routes>
+              <Routes>
+                <Route path='/textoptimizer' element={<TextOptimizer />} />
+              </Routes>
+              <Routes>
+                <Route path='/quiz' element={<Quiz />} />
+              </Routes>
+              <Routes>
+                <Route path='/ContactUs' element={<CU />} />
+              </Routes>
+              <Routes>
+                <Route path='/Notes' element={<N />} />
+              </Routes>
+            </Router>
+          </div>}
       </div>
-    /*</UserContext.Provider>*/
+    </UserContext.Provider>
   );
 }
 
 export default App;
-
-
