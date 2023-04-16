@@ -1,6 +1,7 @@
 import React, { Component ,useContext, useState} from 'react';
 import axios from 'axios';
 import UserContext from '../UserContext';
+import './login.css';
 const User =() => {
   /*Use context to access app.js functions */
   const { handleLogin } = useContext(UserContext);
@@ -35,21 +36,21 @@ const User =() => {
     }
     /*Rendering Body*/
   return(
-    <div>
-    <form onSubmit={handleSubmit}>
-    <div>
-      <label htmlFor="username">Username</label>
-      <input type="text" id="username" value={username} onChange={handleusername} />
-    </div>
-    <div>
-      <label htmlFor="password">Password</label>
-      <input type="password" id="password" value={password} onChange={handlepassword} />
-    </div>
-    {error &&
-      <p> Invalid Login Or SignUp </p>
-    }
-    <button type="submit">Submit</button>
-  </form>
+    <div className='l-container'>
+      <form onSubmit={handleSubmit}>
+      <div className='l-cont'>
+        <label htmlFor="username">Username</label>
+        <input type="text" id="username" value={username} onChange={handleusername} />
+      </div>
+      <div>
+        <label htmlFor="password">Password</label>
+        <input type="password" id="password" value={password} onChange={handlepassword} />
+      </div>
+      {error &&
+        <p> Invalid Login Or SignUp </p>
+      }
+      <button className='l-btn' type="submit">Submit</button>
+    </form>
   </div>
   )
 }

@@ -1,5 +1,7 @@
 import React,{useState} from "react";
+import './signup.css';
 import axios from 'axios';
+
 const Signup =()=>{
     const[name,setname] = useState('')
     const[nameerror,setnameerror] = useState(false)
@@ -82,10 +84,10 @@ const Signup =()=>{
     }
     return(
         <div>
-        <div classname='to-main'>
-            <h1 className='Head'>Sign-Up</h1>
+        <div>
+            <h1 className='s-cont'>Sign-Up</h1>
             {!status && 
-            <form onSubmit={handlesubmit}>
+            <form className="s-container" onSubmit={handlesubmit}>
                 <label htmlFor="n"><p>Name</p> </label>
                 <input type="text" id="n" value={name} onChange={handlename}/>
                 {nameerror &&
@@ -128,8 +130,8 @@ const Signup =()=>{
                 {emailerror &&
                 <p>Enter valid Email</p>
                 }
-                <div className='tobtn-group'>
-                    <button type="submit">Sign up</button>
+                <div >
+                    <button className='s-btn' type="submit">Sign up</button>
                 </div>
                 
                 {/*prompt for not signup response*/}

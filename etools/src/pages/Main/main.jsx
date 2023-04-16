@@ -4,6 +4,7 @@ import MN from '../../components/Main/Mainnav'; /*navbar for main*/
 import MP from '../../components/Main/mainpage'; /*mainpage below navbar that will have content */
 import LI from '../Login/LogIn';
 import SU from '../Signup/SignUp';
+import Footer from '../../components/Footer/Footer';
 const Main = () =>{
 
     return(
@@ -19,6 +20,7 @@ const Main = () =>{
                     <Route path='/Signup' element={<SU/>} />
                 </Routes>
             </Router>
+            <Footer/>
         </div>
     )
 }

@@ -21,10 +21,10 @@ const Mainnav = () =>{
                               <a href="/">MainPage</a>
                             </li>
                             <li>
-                              <button onClick={handlelogin}>LogIn</button>
+                              <button className='btn' onClick={handlelogin}>LogIn</button>
                             </li>
                             <li>
-                              <button onClick={handlesignup}>signup</button>
+                              <button className='btn' onClick={handlesignup}>signup</button>
                             </li>
                         </ul>
                     </div>
