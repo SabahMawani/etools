@@ -20,7 +20,7 @@ function ThesaurusContainer(props)
       	});
   	};
 	return(
-		<>
+		<div className="t-main-container">
 			<div className="t-container">
 				<img className='tbg-img' src={TImg} alt="background" />
 				<div className="timg-shadow"></div>
@@ -46,7 +46,7 @@ function ThesaurusContainer(props)
 					</ul>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

@@ -1,11 +1,11 @@
 .footer{
-    height: 10vh;
-    background-color: rgb(45, 3, 59);
-    width: 100%;
-    text-align: center;
-    color: white;
-    padding-top: 2ch;
-    font-size: small;
-	align-items: last baseline;
+    height: 10vh !important;
+    background-color: rgb(45, 3, 59) !important;
+    width: 100% !important;
+    text-align: center !important;
+    color: white !important;
+    padding-top: 2ch !important;
+    font-size: small !important;
+	align-items: last baseline !important;
 }
 

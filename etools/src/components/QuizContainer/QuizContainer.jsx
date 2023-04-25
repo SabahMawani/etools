@@ -59,57 +59,63 @@ function QuizContainer() {
 				</select>
 				</label>
 			</div>
-			{score !== null ? (
-				<div className='q-output'>Your score is {score}</div>
-			) : (
-				<form className='q-form' onSubmit={handleSubmit}>
-				{questions.map((question) => (
-					<div key={question.id}>
-						<h3>{question.question_text}</h3>
-						<label>
-							<input
-							type="radio"
-							name={`question-${question.id}`}
-							value={question.option_1}
-							checked={answers[question.id] === question.option_1}
-							onChange={(event) => handleAnswerChange(event, question.id)}
-							/>
-							{question.option_1}
-						</label>
-						<label>
-							<input
-							type="radio"
-							name={`question-${question.id}`}
-							value={question.option_2}
-							checked={answers[question.id] === question.option_2}
-							onChange={(event) => handleAnswerChange(event, question.id)}
-							/>
-							{question.option_2}
-						</label>
-						<label>
-							<input
-							type="radio"
-							name={`question-${question.id}`}
-							value={question.option_3}
-							checked={answers[question.id] === question.option_3}
-							onChange={(event) => handleAnswerChange(event, question.id)}
-							/>
-							{question.option_3}
-						</label>
-						<label>
-							<input
-							type="radio"
-							name={`question-${question.id}`}
-							value={question.option_4}
-							checked={answers[question.id] === question.option_4}
-							onChange={(event) => handleAnswerChange(event, question.id)}
-							/>
-							{question.option_4}
-						</label>
-					</div>
-				))}
-				<button className='q-button' type="submit">Submit Answers</button>
-				</form>
+			{questions.length!==0 ?(
+				score !== null ? (
+						<div className='q-output'>Your score is {score}</div>
+					) : (
+						<form className='q-form' onSubmit={handleScore}>
+						{questions.map((question) => (
+							<div key={question.id}>
+								<h3>{question.question_text}</h3>
+								<label>
+									<input
+									type="radio"
+									name={`question-${question.id}`}
+									value={question.option_1}
+									checked={answers[question.id] === question.option_1}
+									onChange={(event) => handleAnswerChange(event, question.id)}
+									/>
+									{question.option_1}
+								</label>
+								<label>
+									<input
+									type="radio"
+									name={`question-${question.id}`}
+									value={question.option_2}
+									checked={answers[question.id] === question.option_2}
+									onChange={(event) => handleAnswerChange(event, question.id)}
+									/>
+									{question.option_2}
+								</label>
+								<label>
+									<input
+									type="radio"
+									name={`question-${question.id}`}
+									value={question.option_3}
+									checked={answers[question.id] === question.option_3}
+									onChange={(event) => handleAnswerChange(event, question.id)}
+									/>
+									{question.option_3}
+								</label>
+								<label>
+									<input
+									type="radio"
+									name={`question-${question.id}`}
+									value={question.option_4}
+									checked={answers[question.id] === question.option_4}
+									onChange={(event) => handleAnswerChange(event, question.id)}
+									/>
+									{question.option_4}
+								</label>
+							</div>
+						))}
+						<button className='q-button' type="submit">Submit Answers</button>
+						</form>
+					)
+			):(
+				<button className='q-button' type="button" onClick={handleSubmit}>
+					Start Quiz
+				</button>
 			)}
 		</div>
 	</>
