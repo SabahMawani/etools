@@ -34,7 +34,7 @@ function TextOptimizerContainer() {
   };
 
   const handleSummary = () => {
-    axios.post('/summary/', { inputText }) //link summary python file here
+    axios.post('http://localhost:8000/get_summary/', { inputText }) //link summary python file here
     .then((response) => {
       setOutputText(response.data);
     })

@@ -10,7 +10,7 @@ function ThesaurusContainer(props)
 	const [antonyms, setAntonyms] = useState([]);
 
 	const getSynonymsAntonyms = () => {
-    	axios.post('/synonyms-antonyms/', { word: word })/*this is where the python file will be linked*/
+    	axios.post('http://localhost:8000/api/synonyms_antonyms/', { word: word })/*this is where the python file will be linked*/
       	.then(response => {
     		setSynonyms(response.data.synonyms);
     		setAntonyms(response.data.antonyms);
