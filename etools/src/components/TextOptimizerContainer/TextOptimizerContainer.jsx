@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TOImg from './../../assets/TextOptimizer.jpg';
 import './textoptimizercontainer.css';
@@ -7,31 +7,47 @@ function TextOptimizerContainer() {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
   const [isListening, setIsListening] = useState(false);
+const [recognition, setRecognition] = useState(null);
 
-  const recognition = new window.webkitSpeechRecognition();
+useEffect(() => {
+  const initRecognition = () => {
+    const recognition = new window.webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
 
-  recognition.continuous = true;
-  recognition.interimResults = true;
-  recognition.lang = 'en-US';
+    recognition.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join('');
 
-  recognition.onresult = (event) => {
-    const transcript = Array.from(event.results)
-      .map((result) => result[0])
-      .map((result) => result.transcript)
-      .join('');
+      setInputText(transcript);
+    };
 
-    setInputText(transcript);
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    setRecognition(recognition);
   };
 
-  const startListening = () => {
-    setIsListening(true);
-    recognition.start();
-  };
+  if (!recognition) {
+    initRecognition();
+  }
+}, [recognition]);
 
-  const stopListening = () => {
-    setIsListening(false);
-    recognition.stop();
-  };
+const startListening = () => {
+  setIsListening(true);
+  recognition.start();
+};
+
+const stopListening = () => {
+  setIsListening(false);
+  recognition.abort();
+  setTimeout(() => setIsListening(false), 500);
+};
+
 
   const handleSummary = () => {
     axios.post('/summary/', { inputText }) //link summary python file here
@@ -64,11 +80,11 @@ function TextOptimizerContainer() {
   };
 
   const handleTextToSpeech = () => {
-  const synth = window.speechSynthesis;
-  const utterance = new SpeechSynthesisUtterance(outputText);
-  const voices = synth.getVoices();
-  utterance.voice = voices[0];
-  synth.speak(utterance);
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(outputText);
+    const voices = synth.getVoices();
+    utterance.voice = voices[0];
+    synth.speak(utterance);
   };
   
   const handleInputChange = (event) => {
