@@ -44,7 +44,7 @@ function TextOptimizerContainer() {
   };
   
   const handleParaphrase = () => {
-    axios.post('/paraphrase/', { inputText }) //link paraphrase python file here
+    axios.post('http://localhost:8000/get_paraphrase/', { inputText }) //link paraphrase python file here
       .then((response) => {
         setOutputText(response.data);
       })
@@ -54,7 +54,7 @@ function TextOptimizerContainer() {
   };
 
   const handleGrammar = () => {
-    axios.post('/grammar/', { inputText }) // link grammar python file here
+    axios.post('http://localhost:8000/get_grammarly/', { inputText }) // link grammar python file here
       .then((response) => {
         setOutputText(response.data);
       })
