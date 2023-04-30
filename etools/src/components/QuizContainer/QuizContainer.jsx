@@ -19,12 +19,21 @@ function QuizContainer() {
 	  setAnswers(newAnswers);
 	};
   
-	const handleSubmit = async (event) => {
-	  event.preventDefault();
-	  const response = await fetch(`/api/quiz/${difficulty}`);
-	  const data = await response.json();
-	  setQuestions(data);
-	};
+	const handleSubmit = () => {
+    	axios.post('/path/', { difficulty: difficulty })/*this is where the python file will be linked*/
+      	.then(response => {
+    		setQuestions(response.data);
+      	})
+    	.catch(error => {
+    		console.error(error);
+      	});
+  	};
+	// const handleSubmit = async (event) => {
+	//   event.preventDefault();
+	//   const response = await fetch(`/api/quiz/${difficulty}`);
+	//   const data = await response.json();
+	//   setQuestions(data);
+	// };
   
 	const calculateScore = () => {
 	  let totalScore = 0;
