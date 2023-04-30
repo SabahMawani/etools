@@ -18,7 +18,7 @@ class ContactUs extends Component{
          const {username ,comment ,email,submitstatus,emailstatus,commentstatus,usernamestatus} = this.state ;
          if(username && comment && email)
          {
-            axios.post('filepathhere',{username,email,comment})
+            axios.post('http://localhost:8000/contact_us/',{username,email,comment})
             .then((response)=>{
                 alert("Feedback Submitted")
             })

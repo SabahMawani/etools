@@ -49,12 +49,12 @@ const Signup =()=>{
         event.preventDefault();
         if(password && email && name && gender)
         {
-            axios.post('filepath',{password,name,email,gender})
+            axios.post('http://localhost:8000/signup/',{password,name,email,gender})
             .then(response=>{
+                 /*to show id making form submission status true*/
+                 setstatus(true)
                 /* setting user id for user */
-                setid(response.id)
-                /*to show id making form submission status true*/
-                setstatus(true)
+                setid(response.data.id)
                 })
             .catch(error=>{
                 /*setstatus(true)*/

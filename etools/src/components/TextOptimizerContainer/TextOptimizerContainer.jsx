@@ -50,7 +50,7 @@ const stopListening = () => {
 
 
   const handleSummary = () => {
-    axios.post('/summary/', { inputText }) //link summary python file here
+    axios.post('http://localhost:8000/get_summary/', { inputText }) //link summary python file here
     .then((response) => {
       setOutputText(response.data);
     })
@@ -60,7 +60,7 @@ const stopListening = () => {
   };
   
   const handleParaphrase = () => {
-    axios.post('/paraphrase/', { inputText }) //link paraphrase python file here
+    axios.post('http://localhost:8000/get_paraphrase/', { inputText }) //link paraphrase python file here
       .then((response) => {
         setOutputText(response.data);
       })
@@ -70,7 +70,7 @@ const stopListening = () => {
   };
 
   const handleGrammar = () => {
-    axios.post('/grammar/', { inputText }) // link grammar python file here
+    axios.post('http://localhost:8000/get_grammarly/', { inputText }) // link grammar python file here
       .then((response) => {
         setOutputText(response.data);
       })

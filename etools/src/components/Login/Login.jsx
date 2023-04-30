@@ -1,4 +1,4 @@
-import React, { Component ,useContext, useState} from 'react';
+import React, { useContext, useState} from 'react';
 import axios from 'axios';
 import UserContext from '../UserContext';
 import './login.css';
@@ -12,20 +12,24 @@ const User =() => {
     /*Sending data to backend */
     const handleSubmit = (e) => {
       e.preventDefault();
-      handleLogin();
-      /*if (username && password) {
-        axios.post('filepath', { username, password })
+      if (username && password) {
+        axios.post('http://localhost:8000/login/', { username, password })
           .then(response => {
+            if (response.status){
             alert('Logged In Successfully')
-            handleLogIn();
+            handleLogin();
+            }
+            else {
+              seterror(true)
+            }
             /* set state true to show user dashboard*/
-       /*   })
+          })
           .catch(error => {
             /*show error*/
-       /*     alert(error)
+            alert(error)
             seterror(true)
           });
-      }*/
+      }
     }
     /*Handle functions  */
     const handleusername = (e) =>{
@@ -47,7 +51,7 @@ const User =() => {
         <input type="password" id="password" value={password} onChange={handlepassword} />
       </div>
       {error &&
-        <p> Invalid Login Or SignUp </p>
+        <p> Invalid Userid or Password </p>
       }
       <button className='l-btn' type="submit">Submit</button>
     </form>
