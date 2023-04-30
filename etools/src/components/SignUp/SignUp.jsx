@@ -54,7 +54,7 @@ const Signup =()=>{
                  /*to show id making form submission status true*/
                  setstatus(true)
                 /* setting user id for user */
-                setid(response.data)
+                setid(response.data.id)
                 })
             .catch(error=>{
                 /*setstatus(true)*/

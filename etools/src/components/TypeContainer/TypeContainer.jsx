@@ -19,7 +19,7 @@ function TypeContainer() {
     axios
       .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
       .then((response) => {
-        setExampleText(response.data.example_text);
+        setExampleText(response.data.exampleText);
       })
       .catch((error) => {
         console.log(error);
