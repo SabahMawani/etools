@@ -59,15 +59,6 @@ function QuizContainer() {
 			<h1>Quiz</h1>
 		</div>
 		<div className='q-main'>
-			<div className='q-cont'>
-				<label>
-				Difficulty:
-				<select className='q-select' value={difficulty} onChange={handleDifficultyChange}>
-					<option value="easy">Easy</option>
-					<option value="hard">Hard</option>
-				</select>
-				</label>
-			</div>
 			{questions.length!==0 ?(
 				score !== null ? (
 						<div className='q-output'>Your score is {score}</div>
@@ -122,9 +113,20 @@ function QuizContainer() {
 						</form>
 					)
 			):(
-				<button className='q-button' type="button" onClick={handleSubmit}>
-					Start Quiz
-				</button>
+				<>
+					<div className='q-cont'>
+						<label>
+						Difficulty:
+						<select className='q-select' value={difficulty} onChange={handleDifficultyChange}>
+							<option value="easy">Easy</option>
+							<option value="hard">Hard</option>
+						</select>
+						</label>
+					</div>
+					<button className='q-button' type="button" onClick={handleSubmit}>
+						Start Quiz
+					</button>
+				</>
 			)}
 		</div>
 	</>
