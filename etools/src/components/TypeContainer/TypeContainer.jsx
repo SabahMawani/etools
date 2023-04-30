@@ -17,7 +17,7 @@ function TypeContainer() {
 
   function getExampleText() {
     axios
-      .get('/api/example-text/')//this is where the generated text will be brought to the front-end
+      .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
       .then((response) => {
         setExampleText(response.data.example_text);
       })
