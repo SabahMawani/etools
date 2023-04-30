@@ -20,7 +20,7 @@ function QuizContainer() {
 	};
   
 	const handleSubmit = () => {
-    	axios.post('/path/', { difficulty: difficulty })/*this is where the python file will be linked*/
+    	axios.post('http://localhost:8000/quiz/', { difficulty: difficulty })/*this is where the python file will be linked*/
       	.then(response => {
     		setQuestions(response.data);
       	})
