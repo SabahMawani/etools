@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import TMImg from './../../assets/typemaster.webp';
 import './typecontainer.css';
-import UserContext from '../UserContext';
 
 function TypeContainer() {
   const userID = localStorage.getItem('userid');
