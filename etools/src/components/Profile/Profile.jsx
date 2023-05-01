@@ -17,8 +17,14 @@ function Profile(){
     const [quiz,setqscore] = useState('-');
     /*Now Ddefining hook to get values from django back end  */
     useEffect(()=>{
-        //sending userid 
-        axios.post('path',{userid})
+        if(storedUserId){
+            setID(storedUserId);
+        }
+        else{
+            setID(userid);
+        }
+        //sending id 
+        axios.post('path',{id})
         .then((response)=>{
             const data = response.data
             setusername(data.username);
