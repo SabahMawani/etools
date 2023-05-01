@@ -118,7 +118,7 @@ input[type="radio"] {
 	display: inline-block !important;
 	vertical-align: middle !important;
 	margin: 0 10px 0 0 !important;
-	appearance: none !important;
+	appearance: initial !important;
 	width: 16px !important;
 	height: 16px !important;
 	border-radius: 50% !important;
