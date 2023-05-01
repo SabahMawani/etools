@@ -38,12 +38,13 @@ const handleAnswerChange = (event, questionId) => {
   const handleSubmit = () => {
     axios.post('http://localhost:8000/quiz/', { difficulty: difficulty })
       .then(response => {
+        // console.log(response.data);
         console.log(response);
         setQuestions(response.data);
         setAnswers({});
         setScore(null);
         setIncorrectAnswers([]);
-		setID(storedUserId);
+    setID(storedUserId);
       })
       .catch(error => {
         console.error(error);
@@ -112,7 +113,7 @@ const handleAnswerChange = (event, questionId) => {
                 <div key={question.id}>
                   <h3>{question.question_text}</h3>
                   <label>
-				            <input
+                    <input
                       type="radio"
                       name={'question-${question.id}-${index}'}
                       value={question.option_1}
