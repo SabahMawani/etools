@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import axios from 'axios';
+import '../redandgreen.css';
 class ContactUs extends Component{
     state = {
         username : null,
@@ -63,19 +64,19 @@ class ContactUs extends Component{
                                 <label htmlFor="username">Username</label>
                                 <input type="text" id="username" onChange={this.handleChange} />
                             </div>
-                            {usernamestatus && <p>Enter Username</p>}
+                            {usernamestatus && <p className='Red'>Enter Username</p>}
                             <div>
                                 <label htmlFor="Email">Email</label>
                                 <input type="Email" id="email" onChange={this.handleChange} />
                             </div>
-                            {emailstatus && <p>Enter Email</p>}
+                            {emailstatus && <p className='Red'>Enter Email</p>}
                             <div>
                                 <label htmlFor="Comment">Comment</label>
                                 <input type="text" id="comment"  onChange={this.handleChange} />
                             </div>
-                            {commentstatus && <p>Enter Comment</p>}
+                            {commentstatus && <p className='Red'>Enter Comment</p>}
                             <button type="submit">Post</button>
-                            {submitstatus && <p>Thanks For Feedback</p>}
+                            {submitstatus && <p className='Green'>Thanks For Feedback</p>}
                         </form>
                         </div>
                         <div class='col-lg-3 col-3'></div>

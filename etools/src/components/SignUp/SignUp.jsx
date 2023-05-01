@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import './signup.css';
 import axios from 'axios';
-
+import '../redandgreen.css';
 const Signup =()=>{
     const[name,setname] = useState('')
     const[nameerror,setnameerror] = useState(false)
@@ -91,12 +91,12 @@ const Signup =()=>{
                 <label htmlFor="n"><p>Name</p> </label>
                 <input type="text" id="n" value={name} onChange={handlename}/>
                 {nameerror &&
-                <p>Enter Valid Name</p>
+                <p className='Red'>Enter Valid Name</p>
                 }
                 <label htmlFor="pass"><p>Password</p> </label>
                 <input type="Password" id="pass" value={password} onChange={handlepassword}/>
                 {passworderror &&
-                <p>Enter Valid Password</p>
+                <p className='Red'>Enter Valid Password</p>
                 }
                 {/*<label htmlFor="g">Gender </label>
                 <input type="text" id="g" value={gender} onChange={handlegender}/>
@@ -123,12 +123,12 @@ const Signup =()=>{
 
                 </div>
                 {gendererror &&
-                <span>Choose a Gender</span>
+                <span className='Red'>Choose a Gender</span>
                 }
                 <label htmlFor="e"><p>Email</p></label>
                 <input type="text" id="e" value={email} onChange={handleemail}/>
                 {emailerror &&
-                <p>Enter valid Email</p>
+                <p className='Red'>Enter valid Email</p>
                 }
                 <div >
                     <button className='s-btn' type="submit">Sign up</button>
@@ -136,7 +136,7 @@ const Signup =()=>{
                 
                 {/*prompt for not signup response*/}
                 {error && 
-                <p>Can't sign up ,Retry !</p>
+                <p className='Red'>Can't sign up ,Retry !</p>
                 }
             </form>
             }
@@ -145,7 +145,7 @@ const Signup =()=>{
             {status && 
                 <div>
                 <h3>User-Id : {id}</h3>    
-                <p>Sign Up Successful ,Use this User Id to Login .</p>
+                <p className='Green'>Sign Up Successful, Make sure to save USER-ID for later Log-in's.</p>
                 </div>
                 }
         </div>

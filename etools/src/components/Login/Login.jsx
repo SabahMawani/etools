@@ -2,6 +2,7 @@ import React, { useContext, useState} from 'react';
 import axios from 'axios';
 import UserContext from '../UserContext';
 import './login.css';
+import '../redandgreen.css';
 const User =() => {
   /*Use context to access app.js functions */
   const { handleLogin } = useContext(UserContext);
@@ -25,8 +26,6 @@ const User =() => {
             /* set state true to show user dashboard*/
           })
           .catch(error => {
-            /*show error*/
-            alert(error)
             seterror(true)
           });
       }
@@ -51,7 +50,7 @@ const User =() => {
         <input type="password" id="password" value={password} onChange={handlepassword} />
       </div>
       {error &&
-        <p> Invalid Userid or Password </p>
+        <p className='Red'> Invalid Userid or Password </p>
       }
       <button className='l-btn' type="submit">Submit</button>
     </form>
