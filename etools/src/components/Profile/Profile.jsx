@@ -24,14 +24,13 @@ function Profile(){
             setID(userid);
         }
         //sending id 
-        axios.post('http://localhost:8000/get_user_info/',{id})
-        .then((response)=>{
-            const data = response.data
-            setusername(data.username);
-            setemail(data.email);
-            setgender(data.gender);
-            setqscore(data.quiz);
-            settscore(data.type);
+        axios.post('http://localhost:8000/get_user_info/',{userid: id})
+        .then(response=>{
+            setusername(response.data.username);
+            setemail(response.data.email);
+            setgender(response.data.gender);
+            setqscore(response.data.quiz);
+            settscore(response.data.type);
         })
         .catch((error)=>{
             alert('Error');
