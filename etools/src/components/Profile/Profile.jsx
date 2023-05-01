@@ -14,7 +14,7 @@ function Profile(){
     /*Now Ddefining hook to get values from django back end  */
     useEffect(()=>{
         //sending userid 
-        axios.post('path',{userid})
+        axios.post('http://localhost:8000/get_user_info/',{userid})
         .then((response)=>{
             const data = response.data
             setusername(data.username);
