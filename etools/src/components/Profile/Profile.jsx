@@ -3,7 +3,6 @@ import axios from 'axios';
 import './profile.css';
 import pImg from './../../assets/profile.jpg';
 import UserContext from '../UserContext';
-import UserContext from '../UserContext';
 function Profile(){
     //user context creation to use user id here 
     const {handleLogout,userid} = useContext(UserContext);
