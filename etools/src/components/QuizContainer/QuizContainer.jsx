@@ -18,11 +18,13 @@ function QuizContainer() {
   };
 
   const handleAnswerChange = (event, questionId) => {
-	setAnswers((prevAnswers) => ({
-	  ...prevAnswers,
-	  [questionId]: event.target.value,
-	}));
+    setAnswers(prevAnswers => {
+      const newAnswers = { ...prevAnswers };
+      newAnswers[questionId] = event.target.value;
+      return newAnswers;
+    });
   };
+  
 
   const handleSubmit = () => {
     axios.post('http://localhost:8000/quiz/', { difficulty: difficulty })
@@ -100,11 +102,11 @@ function QuizContainer() {
                 <div key={question.id}>
                   <h3>{question.question_text}</h3>
                   <label>
-				  <input
+				            <input
                       type="radio"
                       name={'question-${question.id}-${index}'}
                       value={question.option_1}
-                      checked={answers[question.id] === question.option_1}
+                      valueChecked={answers[question.id] === question.option_1}
                       onChange={(event) => handleAnswerChange(event, question.id)}
                     />
                     {question.option_1}
@@ -114,7 +116,7 @@ function QuizContainer() {
                       type="radio"
                       name={'question-${question.id}-${index}'}
                       value={question.option_2}
-                      checked={answers[question.id] === question.option_2}
+                      valueChecked={answers[question.id] === question.option_2}
                       onChange={(event) => handleAnswerChange(event, question.id)}
                     />
                     {question.option_2}
@@ -124,7 +126,7 @@ function QuizContainer() {
                       type="radio"
                       name={'question-${question.id}-${index}'}
                       value={question.option_3}
-                      checked={answers[question.id] === question.option_3}
+                      valueChecked={answers[question.id] === question.option_3}
                       onChange={(event) => handleAnswerChange(event, question.id)}
                     />
                     {question.option_3}
@@ -134,7 +136,7 @@ function QuizContainer() {
                       type="radio"
                       name={'question-${question.id}-${index}'}
                       value={question.option_4}
-                      checked={answers[question.id] === question.option_4}
+                      valueChecked={answers[question.id] === question.option_4}
                       onChange={(event) => handleAnswerChange(event, question.id)}
                     />
                     {question.option_4}
