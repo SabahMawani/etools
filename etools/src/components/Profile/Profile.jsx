@@ -3,21 +3,22 @@ import axios from 'axios';
 import './profile.css';
 import pImg from './../../assets/profile.jpg';
 import UserContext from '../UserContext';
+import UserContext from '../UserContext';
 function Profile(){
-    const {handleLogout} = useContext(UserContext)
-    const [username,setusername] = useState('unknown')
-    const [userid,setuserid] = useState('123')
-    const [email,setemail] = useState('@xyz.com')
-    const [gender,setgender] = useState('-')
-    const [type,settscore] = useState('0')
-    const [quiz,setqscore] = useState('0')
+    //user context creation to use user id here 
+    const {handleLogout,userid} = useContext(UserContext);
+    const [username,setusername] = useState('');
+    const [email,setemail] = useState('');
+    const [gender,setgender] = useState('-');
+    const [type,settscore] = useState('-');
+    const [quiz,setqscore] = useState('-');
     /*Now Ddefining hook to get values from django back end  */
     useEffect(()=>{
-        axios.get('path')
+        //sending userid 
+        axios.post('path',{userid})
         .then((response)=>{
             const data = response.data
             setusername(data.username);
-            setuserid(data.userid);
             setemail(data.email);
             setgender(data.gender);
             setqscore(data.quiz);
