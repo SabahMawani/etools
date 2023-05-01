@@ -18,7 +18,7 @@ function TypeContainer() {
 
   function getExampleText() {
     axios
-      .post('http://localhost:8000/example_text/', {userid})//this is where the generated text will be brought to the front-end
+      .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
       .then((response) => {
         setExampleText(response.data.exampleText);
       })
@@ -57,7 +57,7 @@ function TypeContainer() {
 
     axios
       .post('/api/wpm/', { /*this is where the speed will be sent to the backend*/
-        user_id: 1, // Replace with the user's ID
+        userid, // Replace with the user's ID
         wpm: wpm,
       })
       .then((response) => {
