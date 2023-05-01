@@ -4,7 +4,6 @@ import TMImg from './../../assets/typemaster.webp';
 import './typecontainer.css';
 
 function TypeContainer() {
-  const {userid} = useContext(UserContext);
   const [exampleText, setExampleText] = useState('');
   const [inputText, setInputText] = useState('');
   const [wpm, setWpm] = useState(0);
@@ -18,7 +17,7 @@ function TypeContainer() {
 
   function getExampleText() {
     axios
-      .post('http://localhost:8000/example_text/', {userid})//this is where the generated text will be brought to the front-end
+      .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
       .then((response) => {
         setExampleText(response.data.exampleText);
       })
