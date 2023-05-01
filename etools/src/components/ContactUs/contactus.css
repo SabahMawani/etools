@@ -1,0 +1,38 @@
+.l-container{
+	padding-left: 15%;
+	padding-right: 15%;
+	margin-bottom: 8%;
+	padding-top: 0%;
+}
+
+.l-cont{
+	margin-top: 10%;
+	margin-bottom: 5%;
+}
+
+.l-btn{
+	background-color: rgb(45, 3, 59);
+	border: 1px solid rgb(31, 1, 41);
+	color: white;
+	font-size: medium;
+	text-align: center;
+	padding: 10px 24px;
+	cursor: pointer;
+	margin-top: 2ch;
+	margin-bottom: 2ch;
+	border-radius: 2ch;
+	display: block; 	
+	margin: 0 auto; 
+	margin-top: 6%;
+}
+
+.l-btn:hover {
+	background-color: rgb(208, 190, 216);
+	color: black;
+}
+
+.l-btn:active {
+	background-color: rgb(182, 103, 216);
+	box-shadow: 2ch;
+	color: black;
+}
