@@ -13,9 +13,9 @@ const User =() => {
     const handleSubmit = (e) => {
       e.preventDefault();
       if (username && password) {
-        axios.post('http://localhost:8000/login/', { username, password })
+        axios.post('http://localhost:8000/loginn/', { username, password })
           .then(response => {
-            if (response.status){
+            if (response.data.status){
             alert('Logged In Successfully')
             handleLogin(username);
             }
