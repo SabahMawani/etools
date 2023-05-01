@@ -41,14 +41,14 @@ const User =() => {
   return(
     <div className='l-container'>
       <form onSubmit={handleSubmit}>
-      <div className='l-cont'>
-        <label htmlFor="username">Username</label>
-        <input type="text" id="username" value={username} onChange={handleusername} />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" value={password} onChange={handlepassword} />
-      </div>
+        <div className='l-cont'>
+          <label htmlFor="username">Username</label>
+          <input type="text" id="username" value={username} onChange={handleusername} />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password" value={password} onChange={handlepassword} />
+        </div>
       {error &&
         <p className='Red'> Invalid Userid or Password </p>
       }
