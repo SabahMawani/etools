@@ -4,7 +4,6 @@ import TMImg from './../../assets/typemaster.webp';
 import './typecontainer.css';
 
 function TypeContainer() {
-  const {userid} = useContext(UserContext);
   const [exampleText, setExampleText] = useState('');
   const [inputText, setInputText] = useState('');
   const [wpm, setWpm] = useState(0);
