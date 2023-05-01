@@ -60,14 +60,16 @@ class ContactUs extends Component{
                     <div className='l-cont'>
                         <label htmlFor="username" >Username</label>
                         <input type="text" id="username" onChange={this.handleChange} />
-                    </div>
+                    {/* </div> */}
                     {usernamestatus && <p className='Red'>Enter Username</p>}
-                    <div className='l-cont'>
+                    {/* <div className='l-cont'> */}
+                    <div className='break'></div>
                         <label htmlFor="Email">Email</label>
                         <input type="Email" id="email" onChange={this.handleChange} />
-                    </div>
+                    {/* </div> */}
                     {emailstatus && <p className='Red'>Enter Email</p>}
-                    <div className='l-cont'>
+                    <div className='break'></div>
+                    {/* <div className='l-cont'> */}
                         <label htmlFor="Comment">Comment</label>
                         <input type="text" id="comment"  onChange={this.handleChange} />
                     </div>

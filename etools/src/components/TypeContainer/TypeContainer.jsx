@@ -24,6 +24,8 @@ function TypeContainer() {
         setExampleText(response.data.exampleText);
         setEndTime.React.useState(null);
         setInputText('');
+        setWpm(0);
+        setCurrentCharIndex(0);
       })
       .catch((error) => {
         console.log(error);

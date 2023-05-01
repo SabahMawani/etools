@@ -7,12 +7,18 @@
 	border-style : solid 1px ;
 	background-color: #d0bed8 ;
 }
+
+.break{
+	padding-top: 5%;
+}
+
 .container{
 	align-items: center;
 }
 .l-cont{
-	margin-top: 4%;
-	margin-bottom: 5%;
+	padding-top: 8%;
+	/* margin-top: 4%; */
+	/* margin-bottom: 5%; */
 }
 
 .l-btn{
@@ -29,7 +35,7 @@
 	display: block; 	
 	margin: 0 auto; 
 	margin-top: 6%;
-	width : 10%;
+	width : 15%;
 }
 
 .l-btn:hover {
