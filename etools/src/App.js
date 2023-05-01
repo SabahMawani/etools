@@ -31,7 +31,7 @@ function App() {
     setuserid(id);    //id will be seent from login page 
     setLoggedIn(true);
     localStorage.setItem('loggedIn', JSON.stringify(true)); // Store loggedIn state in localStorage
-    localstorage.setitem('userid',id);
+    localStorage.setitem('userid',id);
   };
 
   /*used in logout component*/
