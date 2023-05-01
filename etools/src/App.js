@@ -1,7 +1,7 @@
 import React, { useState,  useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes ,vigate } from 'react-router-dom';
-import 'materialize-css/dist/css/materialize.min.css';
+//import 'materialize-css/dist/css/materialize.min.css';
 import UserContext from './components/UserContext';
 
 import {
