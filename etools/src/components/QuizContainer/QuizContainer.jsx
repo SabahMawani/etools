@@ -19,12 +19,21 @@ function QuizContainer() {
 	  setAnswers(newAnswers);
 	};
   
-	const handleSubmit = async (event) => {
-	  event.preventDefault();
-	  const response = await fetch(`/api/quiz/${difficulty}`);
-	  const data = await response.json();
-	  setQuestions(data);
-	};
+	const handleSubmit = () => {
+    	axios.post('http://localhost:8000/quiz/', { difficulty: difficulty })/*this is where the python file will be linked*/
+      	.then(response => {
+    		setQuestions(response.data);
+      	})
+    	.catch(error => {
+    		console.error(error);
+      	});
+  	};
+	// const handleSubmit = async (event) => {
+	//   event.preventDefault();
+	//   const response = await fetch(`/api/quiz/${difficulty}`);
+	//   const data = await response.json();
+	//   setQuestions(data);
+	// };
   
 	const calculateScore = () => {
 	  let totalScore = 0;
@@ -50,15 +59,6 @@ function QuizContainer() {
 			<h1>Quiz</h1>
 		</div>
 		<div className='q-main'>
-			<div className='q-cont'>
-				<label>
-				Difficulty:
-				<select className='q-select' value={difficulty} onChange={handleDifficultyChange}>
-					<option value="easy">Easy</option>
-					<option value="hard">Hard</option>
-				</select>
-				</label>
-			</div>
 			{questions.length!==0 ?(
 				score !== null ? (
 						<div className='q-output'>Your score is {score}</div>
@@ -113,9 +113,20 @@ function QuizContainer() {
 						</form>
 					)
 			):(
-				<button className='q-button' type="button" onClick={handleSubmit}>
-					Start Quiz
-				</button>
+				<>
+					<div className='q-cont'>
+						<label>
+						Difficulty:
+						<select className='q-select' value={difficulty} onChange={handleDifficultyChange}>
+							<option value="easy">Easy</option>
+							<option value="hard">Hard</option>
+						</select>
+						</label>
+					</div>
+					<button className='q-button' type="button" onClick={handleSubmit}>
+						Start Quiz
+					</button>
+				</>
 			)}
 		</div>
 	</>

@@ -13,9 +13,9 @@ const User =() => {
     const handleSubmit = (e) => {
       e.preventDefault();
       if (username && password) {
-        axios.post('filepath', { username, password })
+        axios.post('http://localhost:8000/login/', { username, password })
           .then(response => {
-            if (response.status === true){
+            if (response.status){
             alert('Logged In Successfully')
             handleLogin();
             }
