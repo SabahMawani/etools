@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import TMImg from './../../assets/typemaster.webp';
 import './typecontainer.css';
+import UserContext from '../UserContext';
 
 function TypeContainer() {
+  const {userid} = useContext(UserContext);
   const [exampleText, setExampleText] = useState('');
   const [inputText, setInputText] = useState('');
   const [wpm, setWpm] = useState(0);
@@ -55,7 +57,7 @@ function TypeContainer() {
     setWpm(wpm);
 
     axios
-      .post('/api/wpm/', { /*this is where the speed will be sent to the backend*/
+      .post('http://localhost:8000/submit_speed/', { /*this is where the speed will be sent to the backend*/
         userid, // Replace with the user's ID
         wpm: wpm,
       })

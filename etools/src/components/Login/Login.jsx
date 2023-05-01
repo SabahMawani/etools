@@ -17,7 +17,7 @@ const User =() => {
           .then(response => {
             if (response.status){
             alert('Logged In Successfully')
-            handleLogin();
+            handleLogin(username);
             }
             else {
               seterror(true)

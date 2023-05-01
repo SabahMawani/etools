@@ -17,7 +17,7 @@ import {
 } from './pages';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userid,setuserid] = useState(null);
+  const [userid,setuserid] = useState('');
   // Load loggedIn state from localStorage on component mount
   useEffect(() => {
     const storedLoggedIn = localStorage.getItem('loggedIn');
@@ -36,7 +36,7 @@ function App() {
   /*used in logout component*/
   const handleLogout = () => {
     setLoggedIn(false);
-    setuserid(null);
+    setuserid('');
     localStorage.removeItem('loggedIn'); // Remove loggedIn state from localStorage
   };
   /*values to be passed in user context*/
