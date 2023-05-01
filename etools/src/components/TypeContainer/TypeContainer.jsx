@@ -22,7 +22,7 @@ function TypeContainer() {
       .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
       .then((response) => {
         setExampleText(response.data.exampleText);
-        setEndTime(NULL);
+        setEndTime.React.useState(null);
         setInputText('');
       })
       .catch((error) => {
