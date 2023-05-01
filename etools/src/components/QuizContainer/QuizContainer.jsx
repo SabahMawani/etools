@@ -55,7 +55,7 @@ const handleAnswerChange = (event, questionId) => {
     let totalScore = 0;
     const incorrect = [];
     questions.forEach((question) => {
-      if (question.correct_option === answers[question.id]) {
+      if (question.correct_option === selectedAnswers[question.question_id]) {
         totalScore++;
       } else {
         incorrect.push(question);
@@ -66,11 +66,11 @@ const handleAnswerChange = (event, questionId) => {
   };
 
   const handleScore = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const totalScore = calculateScore();
     setScore(totalScore);
     const incorrectAnswersData = incorrectAnswers.map((question) => {
-      return { question: question.question_text, answer: answers[question.id] };
+      return { question: question.question_text, answer: answers[question.question_id] };
     });
     const data = {
       user: id,
@@ -101,59 +101,63 @@ const handleAnswerChange = (event, questionId) => {
               <p>You got {incorrectAnswers.length} question(s) wrong:</p>
               <ul>
                 {incorrectAnswers.map((question) => (
-                  <li key={question.id}>
-                    {question.question_text} - Your answer: {answers[question.id]}
+                  <li key={question.question_id}>
+                    {question.question_text} - Your answer: {selectedAnswers[question.question_id]}
                   </li>
                 ))}
               </ul>
             </div>
           ) : (
             <form className='q-form' onSubmit={handleScore}>
-              {questions.map((question) => (
-                <div key={question.id}>
+              {questions.map((question) => {
+                return(
+
+                <div key={question.question_id}>
                   <h3>{question.question_text}</h3>
                   <label>
 				            <input
-                      type="radio"
-                      name={'question-${question.id}-${index}'}
+                      type="checkbox"
+                      name={'question-${question.question_id}-${index}'}
                       value={question.option_1}
-                      checked={selectedAnswers[question.id] === question.option_1}
-                      onChange={(event) => handleAnswerChange(event, question.id)}
+                      checked={selectedAnswers[question.question_id] === question.option_1}
+                      onChange={(event) => handleAnswerChange(event, question.question_id)}
                     />
                     {question.option_1}
                   </label>
                   <label>
                     <input
-                      type="radio"
-                      name={'question-${question.id}-${index}'}
+                      type="checkbox"
+                      name={'question-${question.question_id}-${index}'}
                       value={question.option_2}
-                      checked={selectedAnswers[question.id] === question.option_2}
-                      onChange={(event) => handleAnswerChange(event, question.id)}
+                      checked={selectedAnswers[question.question_id] === question.option_2}
+                      onChange={(event) => handleAnswerChange(event, question.question_id)}
                     />
                     {question.option_2}
                   </label>
                   <label>
                     <input
-                      type="radio"
-                      name={'question-${question.id}-${index}'}
+                      type="checkbox"
+                      name={'question-${question.question_id}-${index}'}
                       value={question.option_3}
-                      checked={selectedAnswers[question.id] === question.option_3}
-                      onChange={(event) => handleAnswerChange(event, question.id)}
+                      checked={selectedAnswers[question.question_id] === question.option_3}
+                      onChange={(event) => handleAnswerChange(event, question.question_id)}
                     />
                     {question.option_3}
                   </label>
                   <label>
                     <input
-                      type="radio"
-                      name={'question-${question.id}-${index}'}
+                      type="checkbox"
+                      name={'question-${question.question_id}-${index}'}
                       value={question.option_4}
-                      checked={selectedAnswers[question.id] === question.option_4}
-                      onChange={(event) => handleAnswerChange(event, question.id)}
+                      checked={selectedAnswers[question.question_id] === question.option_4}
+                      onChange={(event) => handleAnswerChange(event, question.question_id)}
                     />
                     {question.option_4}
                   </label>
                 </div>
-              ))}
+                )
+              }
+              )}
               <button className='q-button' type="submit">Submit Answers</button>
             </form>
           )

@@ -6,30 +6,36 @@ import './typecontainer.css';
 function TypeContainer() {
   const userID = localStorage.getItem('userid');
   //const {userid} = useContext(UserContext);
-  const [exampleText, setExampleText] = useState('');
+  const [exampleText, setExampleText] = useState('hello guys how are you');
   const [inputText, setInputText] = useState('');
   const [wpm, setWpm] = useState(0);
   const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
+  const [disabledInput, setDisabledInput] = useState(false);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
-  useEffect(() => {
-    getExampleText();
-  }, []);
+  // useEffect(() => {
+  //   getExampleText();
+  // }, []);
 
   function getExampleText() {
-    axios
-      .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
-      .then((response) => {
-        setExampleText(response.data.exampleText);
-        setEndTime.React.useState(null);
+    // axios
+    //   .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
+    //   .then((response) => {
+    //     setExampleText(response.data.exampleText);
+    //     setEndTime.React.useState(null);
+    //     setInputText('');
+    //     setWpm(0);
+    //     setCurrentCharIndex(0);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+        setExampleText('hello world this is annoying');
+        setDisabledInput(false);
         setInputText('');
         setWpm(0);
+        setStartTime(Date.now())
         setCurrentCharIndex(0);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   function handleInputChange(event) {
@@ -40,7 +46,8 @@ function TypeContainer() {
       setStartTime(Date.now());
     }
     if (input === exampleText) {
-      setEndTime(Date.now());
+      // setEndTime(Date.now());
+      setDisabledInput(true);
 	  calculateWpm();
     }
   }
@@ -55,7 +62,7 @@ function TypeContainer() {
   }
 
   function calculateWpm() {
-    const elapsedTime = (endTime - startTime) / 1000 / 60; // minutes
+    const elapsedTime = (Date.now() - startTime) / 1000 / 60; // minutes
     const wordCount = exampleText.trim().split(/\s+/).length;
     const wpm = Math.round(wordCount / elapsedTime);
     setWpm(wpm);
@@ -100,8 +107,8 @@ function TypeContainer() {
 				</div>
 			</div>
 			<div>
-				<textarea className="tm-input" type="text" value={inputText} onChange={handleInputChange} />
-				{endTime && (
+				<textarea disabled={disabledInput} className="tm-input" type="text" value={inputText} onChange={handleInputChange} />
+				{disabledInput && (
 				<div className="tm-results">
 					<p>
 					Your typing speed is {wpm} WPM.
@@ -109,7 +116,7 @@ function TypeContainer() {
 				</div>
 				)}
 			</div>
-			{endTime && (
+			{disabledInput && (
 				<button className="tm-button" onClick={getExampleText}>
 				Restart
 				</button>
