@@ -1,181 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import QImg from './../../assets/quiz.jpg';
-import './quizcontainer.css';
+import TMImg from './../../assets/typemaster.webp';
+import './typecontainer.css';
 
-function QuizContainer() {
-  const [difficulty, setDifficulty] = useState("easy");
-  const [questions, setQuestions] = useState([]);
-  const [answers, setAnswers] = useState({});
-  const [score, setScore] = useState(null);
-  const [incorrectAnswers, setIncorrectAnswers] = useState([]);
-  const [id,setID] = useState('');
-  const [selectedAnswers, setSelectedAnswers] = useState({});
+function TypeContainer() {
+  const userID = localStorage.getItem('userid');
+  //const {userid} = useContext(UserContext);
+  const [exampleText, setExampleText] = useState('');
+  const [inputText, setInputText] = useState('');
+  const [wpm, setWpm] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
-const handleAnswerChange = (event, questionId) => {
-  setSelectedAnswers(prevSelectedAnswers => ({
-    ...prevSelectedAnswers,
-    [questionId]: event.target.value,
-  }));
-};
+  useEffect(() => {
+    getExampleText();
+  }, []);
 
-
-  const storedUserId = localStorage.getItem('userid');
-
-  const handleDifficultyChange = (event) => {
-    setDifficulty(event.target.value);
-  };
-
-  // const handleAnswerChange = (event, questionId) => {
-  //   setAnswers(prevAnswers => {
-  //     const newAnswers = { ...prevAnswers };
-  //     newAnswers[questionId] = event.target.value;
-  //     return newAnswers;
-  //   });
-  // };
-  
-
-  const handleSubmit = () => {
-    axios.post('http://localhost:8000/quiz/', { difficulty: difficulty })
-      .then(response => {
-        // console.log(response.data);
-        console.log(response);
-        setQuestions(response.data);
-        setAnswers({});
-        setScore(null);
-        setIncorrectAnswers([]);
-    setID(storedUserId);
+  function getExampleText() {
+    axios
+      .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
+      .then((response) => {
+        setExampleText(response.data.exampleText);
+        setEndTime.React.useState(null);
+        setInputText('');
+        setWpm(0);
+        setCurrentCharIndex(0);
       })
-      .catch(error => {
-        console.error(error);
+      .catch((error) => {
+        console.log(error);
       });
-  };
+  }
 
-  const calculateScore = () => {
-    let totalScore = 0;
-    const incorrect = [];
-    questions.forEach((question) => {
-      if (question.correct_option === answers[question.id]) {
-        totalScore++;
-      } else {
-        incorrect.push(question);
+  function handleInputChange(event) {
+    const input = event.target.value;
+    setInputText(input);
+    setCurrentCharIndex(getCurrentCharIndex(input));
+    if (!startTime) {
+      setStartTime(Date.now());
+    }
+    if (input === exampleText) {
+      setEndTime(Date.now());
+    calculateWpm();
+    }
+  }
+
+  function getCurrentCharIndex(input) {
+    for (let i = 0; i < input.length; i++) {
+      if (input.charAt(i) !== exampleText.charAt(i)) {
+        return i;
       }
-    });
-    setIncorrectAnswers(incorrect);
-    return totalScore;
-  };
+    }
+    return input.length;
+  }
 
-  const handleScore = (event) => {
-    event.preventDefault();
-    const totalScore = calculateScore();
-    setScore(totalScore);
-    const incorrectAnswersData = incorrectAnswers.map((question) => {
-      return { question: question.question_text, answer: answers[question.id] };
-    });
-    const data = {
-      user: id,
-      score: totalScore,
-      incorrect_answers: incorrectAnswersData,
-    };
-    axios.post('http://localhost:8000/quiz/submit/', data)
-      .then(response => {
+  function calculateWpm() {
+    const elapsedTime = (endTime - startTime) / 1000 / 60; // minutes
+    const wordCount = exampleText.trim().split(/\s+/).length;
+    const wpm = Math.round(wordCount / elapsedTime);
+    setWpm(wpm);
+
+    axios
+      .post('http://localhost:8000/submit_speed/', { /*this is where the speed will be sent to the backend*/
+        userID, // Replace with the user's ID
+        wpm: wpm,
+      })
+      .then((response) => {
         console.log(response);
       })
-      .catch(error => {
-        console.error(error);
+      .catch((error) => {
+        console.log(error);
       });
-  };
+  }
 
   return (
-    <>
-      <div className="q-container">
-        <img className='qbg-img' src={QImg} alt="background" />
-        <div className="qimg-shadow"></div>
-        <h1>Quiz</h1>
+  <>
+    <div className="tm-container">
+      <img className='tmbg-img' src={TMImg} alt="background" />
+      <div className="tmimg-shadow"></div>
+      <h1>TypeMaster</h1>
+    </div>
+    <div className="tm-main">
+      <h1>Example text: </h1>
+      <div className="tm-examplebox">
+        <div className="tm-exampletext">
+        {exampleText.split('').map((char, index) => {
+          let className = '';
+          if (index < currentCharIndex) {
+            className = 'tm-correct';
+          } else if (index === currentCharIndex) {
+            className = 'tm-current';
+          }
+          return (
+          <span key={index} className={className}>
+            {char}
+          </span>
+          );
+        })}
+        </div>
       </div>
-      <div className='q-main'>
-        {questions.length !== 0 ? (
-          score !== null ? (
-            <div className='q-output'>
-              <p>Your score is {score}.</p>
-              <p>You got {incorrectAnswers.length} question(s) wrong:</p>
-              <ul>
-                {incorrectAnswers.map((question) => (
-                  <li key={question.id}>
-                    {question.question_text} - Your answer: {answers[question.id]}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <form className='q-form' onSubmit={handleScore}>
-              {questions.map((question) => (
-                <div key={question.id}>
-                  <h3>{question.question_text}</h3>
-                  <label>
-                    <input
-                      type="radio"
-                      name={'question-${question.id}-${index}'}
-                      value={question.option_1}
-                      checked={selectedAnswers[question.id] === question.option_1}
-                      onChange={(event) => handleAnswerChange(event, question.id)}
-                    />
-                    {question.option_1}
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name={'question-${question.id}-${index}'}
-                      value={question.option_2}
-                      checked={selectedAnswers[question.id] === question.option_2}
-                      onChange={(event) => handleAnswerChange(event, question.id)}
-                    />
-                    {question.option_2}
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name={'question-${question.id}-${index}'}
-                      value={question.option_3}
-                      checked={selectedAnswers[question.id] === question.option_3}
-                      onChange={(event) => handleAnswerChange(event, question.id)}
-                    />
-                    {question.option_3}
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name={'question-${question.id}-${index}'}
-                      value={question.option_4}
-                      checked={selectedAnswers[question.id] === question.option_4}
-                      onChange={(event) => handleAnswerChange(event, question.id)}
-                    />
-                    {question.option_4}
-                  </label>
-                </div>
-              ))}
-              <button className='q-button' type="submit">Submit Answers</button>
-            </form>
-          )
-      ):(
-        <>
-          <div className='q-cont'>
-            <label>
-              Difficulty:
-              <select className='q-select' value={difficulty} onChange={handleDifficultyChange}>
-                <option value="easy">Easy</option>
-                <option value="hard">Hard</option>
-              </select>
-            </label>
-          </div>
-          <button className='q-button' type="button" onClick={handleSubmit}>
-            Start Quiz
-          </button>
-        </>
+      <div>
+        <textarea className="tm-input" type="text" value={inputText} onChange={handleInputChange} />
+        {endTime && (
+        <div className="tm-results">
+          <p>
+          Your typing speed is {wpm} WPM.
+          </p>
+        </div>
+        )}
+      </div>
+      {endTime && (
+        <button className="tm-button" onClick={getExampleText}>
+        Restart
+        </button>
       )}
     </div>
   </>
-);
+  );
 }
 
-export default QuizContainer;
+export default TypeContainer;
