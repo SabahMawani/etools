@@ -38,7 +38,8 @@ const handleAnswerChange = (event, questionId) => {
   const handleSubmit = () => {
     axios.post('http://localhost:8000/quiz/', { difficulty: difficulty })
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
+        console.log(response);
         setQuestions(response.data);
         setAnswers({});
         setScore(null);
