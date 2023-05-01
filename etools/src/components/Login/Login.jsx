@@ -15,7 +15,7 @@ const User =() => {
       if (username && password) {
         axios.post('http://localhost:8000/login/', { username, password })
           .then(response => {
-            if (response.status){
+            if (response.status== 'True'){
             alert('Logged In Successfully')
             handleLogin(username);
             }
