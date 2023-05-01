@@ -2,6 +2,7 @@ import React from "react";
 import './Navstyling.css';
 const Navbar = () =>{
     return(
+      <div>
         <nav className='nav-wrapper '>
                     <a className='brand-logo'>E-Tools</a>
                         <ul>
@@ -29,6 +30,7 @@ const Navbar = () =>{
                             </li>
                         </ul>
         </nav>
+        </div>
     );
 }
 export default Navbar;
