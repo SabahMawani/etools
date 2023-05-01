@@ -49,16 +49,16 @@ select{
 	background-color: rgb(45, 3, 59)  !important;
 	border: 1px solid rgb(31, 1, 41)  !important;
 	margin-left: 2ch  !important;
-	display: flex !important;
+	/* display: flex !important; */
 	border-radius: 2ch;
 }
 
-select option{
+/* select option{
 	font-size: 14px  !important;
 	color: white  !important;
 	background-color: rgb(45, 3, 59)  !important;
 	border: 1px solid rgb(31, 1, 41)  !important;
-}
+} */
 
 .q-output {
 	font-family: fantasy  !important;
