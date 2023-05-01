@@ -5,7 +5,8 @@ import './typecontainer.css';
 import UserContext from '../UserContext';
 
 function TypeContainer() {
-  const {userid} = useContext(UserContext);
+  const userID = localStorage.getItem('userid');
+  //const {userid} = useContext(UserContext);
   const [exampleText, setExampleText] = useState('');
   const [inputText, setInputText] = useState('');
   const [wpm, setWpm] = useState(0);
@@ -58,7 +59,7 @@ function TypeContainer() {
 
     axios
       .post('http://localhost:8000/submit_speed/', { /*this is where the speed will be sent to the backend*/
-        userid, // Replace with the user's ID
+        userID, // Replace with the user's ID
         wpm: wpm,
       })
       .then((response) => {
@@ -74,7 +75,7 @@ function TypeContainer() {
 		<div className="tm-container">
 			<img className='tmbg-img' src={TMImg} alt="background" />
 			<div className="tmimg-shadow"></div>
-			<h1>TypeMaster{userid}</h1>
+			<h1>TypeMaster{userID}</h1>
 		</div>
 		<div className="tm-main">
 			<h1>Example text: </h1>
