@@ -24,7 +24,7 @@ function Profile(){
             setID(userid);
         }
         //sending id 
-        axios.post('http://localhost:8000/get_user_info/',{userid: id})
+        axios.post('http://localhost:8000/get_user_info/',{id})
         .then(response=>{
             setusername(response.data.username);
             setemail(response.data.email);
