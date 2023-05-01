@@ -1,5 +1,5 @@
 import React from "react";
-import './navbar.css';
+
 const Navbar = () =>{
     return(
         <nav className='nav-wrapper rgb(45, 3, 59) darken-3'>
