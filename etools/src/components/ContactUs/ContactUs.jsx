@@ -75,7 +75,7 @@ class ContactUs extends Component{
                     </div>
                     {commentstatus && <p className='Red'>Enter Comment</p>}
                     <button type="submit" className='l-btn' >Post</button>
-                    {submitstatus && <p className='Green'>Thanks For Feedback</p>}
+                    {submitstatus && commentstatus && emailstatus && usernamestatus && <p className='Green'> Thanks For Feedback</p>}
                 </form>
             </div>   
         );
