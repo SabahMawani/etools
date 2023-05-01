@@ -26,7 +26,7 @@ function Profile(){
         .catch((error)=>{
             alert('Error');
         })
-    } , []);
+    } , [userid]);
     const handleclick = () =>{
         handleLogout();
     }
