@@ -4,8 +4,12 @@ import './profile.css';
 import pImg from './../../assets/profile.jpg';
 import UserContext from '../UserContext';
 function Profile(){
+    //getting userid from local storage
+    const storedUserId = localStorage.getItem('userid');
     //user context creation to use user id here 
     const {handleLogout,userid} = useContext(UserContext);
+
+    const [id,setID] = useState('');
     const [username,setusername] = useState('');
     const [email,setemail] = useState('');
     const [gender,setgender] = useState('-');
@@ -13,8 +17,15 @@ function Profile(){
     const [quiz,setqscore] = useState('-');
     /*Now Ddefining hook to get values from django back end  */
     useEffect(()=>{
-        //sending userid 
-        axios.post('path',{userid})
+
+        if(storedUserId){
+            setID(storedUserId);
+        }
+        else{
+            setID(userid);
+        }
+                //sending id 
+        axios.post('path',{id})
         .then((response)=>{
             const data = response.data
             setusername(data.username);
@@ -26,7 +37,7 @@ function Profile(){
         .catch((error)=>{
             alert('Error');
         })
-    } , [userid]);
+    } , []);
     const handleclick = () =>{
         handleLogout();
     }
@@ -37,7 +48,7 @@ function Profile(){
                 <div className='heading-container'>
                     <h2 className='profile-heading'>Welcome to E-tools {username}</h2>
                     <div className='pro-container'>
-                        <p className=''><b>User ID : </b>{userid}</p>
+                        <p className=''><b>User ID : </b>{id}</p>
                         <p className=''><b>Email : </b>{email}</p>
                         <p className=''><b>Gender : </b>{gender}</p>
                         <p className=''><b>Quiz High Score : </b>{quiz}</p>
