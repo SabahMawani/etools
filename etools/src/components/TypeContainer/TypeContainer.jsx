@@ -6,36 +6,31 @@ import './typecontainer.css';
 function TypeContainer() {
   const userID = localStorage.getItem('userid');
   //const {userid} = useContext(UserContext);
-  const [exampleText, setExampleText] = useState('hello guys how are you');
+  const [exampleText, setExampleText] = useState('');
   const [inputText, setInputText] = useState('');
   const [wpm, setWpm] = useState(0);
   const [startTime, setStartTime] = useState(null);
   const [disabledInput, setDisabledInput] = useState(false);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
-  // useEffect(() => {
-  //   getExampleText();
-  // }, []);
+  useEffect(() => {
+    getExampleText();
+  }, []);
 
   function getExampleText() {
-    // axios
-    //   .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
-    //   .then((response) => {
-    //     setExampleText(response.data.exampleText);
-    //     setEndTime.React.useState(null);
-    //     setInputText('');
-    //     setWpm(0);
-    //     setCurrentCharIndex(0);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-        setExampleText('hello world this is annoying');
-        setDisabledInput(false);
+    axios
+      .get('http://localhost:8000/example_text/')//this is where the generated text will be brought to the front-end
+      .then((response) => {
+        setExampleText(response.data.exampleText);
         setInputText('');
         setWpm(0);
-        setStartTime(Date.now())
         setCurrentCharIndex(0);
+        setDisabledInput(false);
+        setStartTime(Date.now());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function handleInputChange(event) {

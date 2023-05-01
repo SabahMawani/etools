@@ -44,7 +44,7 @@ const handleAnswerChange = (event, questionId) => {
         setAnswers({});
         setScore(null);
         setIncorrectAnswers([]);
-		setID(storedUserId);
+    setID(storedUserId);
       })
       .catch(error => {
         console.error(error);

@@ -3,11 +3,12 @@ import axios from 'axios';
 import './profile.css';
 import pImg from './../../assets/profile.jpg';
 import UserContext from '../UserContext';
+
 function Profile(){
     //getting userid from local storage
     const storedUserId = localStorage.getItem('userid');
     //user context creation to use user id here 
-    const {handleLogout,userid} = useContext(UserContext);
+    const {handleLogout, userid} = useContext(UserContext);
 
     const [id,setID] = useState('');
     const [username,setusername] = useState('');
@@ -15,7 +16,7 @@ function Profile(){
     const [gender,setgender] = useState('-');
     const [type,settscore] = useState('-');
     const [quiz,setqscore] = useState('-');
-    /*Now Ddefining hook to get values from django back end  */
+
     useEffect(()=>{
         if(storedUserId){
             setID(storedUserId);
@@ -23,22 +24,28 @@ function Profile(){
         else{
             setID(userid);
         }
-        //sending id 
-        axios.post('http://localhost:8000/get_user_info/',{userid: id})
-        .then(response=>{
-            setusername(response.data.username);
-            setemail(response.data.email);
-            setgender(response.data.gender);
-            setqscore(response.data.quiz);
-            settscore(response.data.type);
-        })
-        .catch((error)=>{
-            alert('Error');
-        })
-    } , []);
+    }, [userid, storedUserId]);
+
+    useEffect(() => {
+        if (id) { // check that id is not falsy (null, undefined, etc.)
+            axios.post('http://localhost:8000/get_user_info/', {id})
+                .then(response=>{
+                    setusername(response.data.username);
+                    setemail(response.data.email);
+                    setgender(response.data.gender);
+                    setqscore(response.data.quiz);
+                    settscore(response.data.type);
+                })
+                .catch((error)=>{
+                    alert('Error');
+                })
+        }
+    }, [id]);
+
     const handleclick = () =>{
         handleLogout();
     }
+
     return(
         <div className='profile-background'>
             <img className='profile-bg-img' src={pImg} alt="Background Image" />
@@ -60,4 +67,5 @@ function Profile(){
         </div>
     );
 }
+
 export default Profile;
