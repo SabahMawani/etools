@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import '../redandgreen.css';
+import './contactus.css';
 class ContactUs extends Component{
     state = {
         username : null,
@@ -54,35 +55,26 @@ class ContactUs extends Component{
     ContactUs = () =>{
         const {submitstatus,emailstatus,commentstatus,usernamestatus} = this.state ;
         return(
-            <div>
-                <div class='container'>
-                    <div class='row'>
-                        <div class='col-lg-3 col-3'></div>
-                        <div class='col-lg-6 col-6'>
-                        <form onSubmit={this.handleSubmit}>
-                            <div>
-                                <label htmlFor="username">Username</label>
-                                <input type="text" id="username" onChange={this.handleChange} />
-                            </div>
-                            {usernamestatus && <p className='Red'>Enter Username</p>}
-                            <div>
-                                <label htmlFor="Email">Email</label>
-                                <input type="Email" id="email" onChange={this.handleChange} />
-                            </div>
-                            {emailstatus && <p className='Red'>Enter Email</p>}
-                            <div>
-                                <label htmlFor="Comment">Comment</label>
-                                <input type="text" id="comment"  onChange={this.handleChange} />
-                            </div>
-                            {commentstatus && <p className='Red'>Enter Comment</p>}
-                            <button type="submit">Post</button>
-                            {submitstatus && <p className='Green'>Thanks For Feedback</p>}
-                        </form>
-                        </div>
-                        <div class='col-lg-3 col-3'></div>
+            <div className='l-container'>
+                <form onSubmit={this.handleSubmit}>
+                    <div className='l-cont'>
+                        <label htmlFor="username" >Username</label>
+                        <input type="text" id="username" onChange={this.handleChange} />
                     </div>
-                </div>
-
+                    {usernamestatus && <p className='Red'>Enter Username</p>}
+                    <div className='l-cont'>
+                        <label htmlFor="Email">Email</label>
+                        <input type="Email" id="email" onChange={this.handleChange} />
+                    </div>
+                    {emailstatus && <p className='Red'>Enter Email</p>}
+                    <div className='l-cont'>
+                        <label htmlFor="Comment">Comment</label>
+                        <input type="text" id="comment"  onChange={this.handleChange} />
+                    </div>
+                    {commentstatus && <p className='Red'>Enter Comment</p>}
+                    <button type="submit" className='l-btn' >Post</button>
+                    {submitstatus && <p className='Green'>Thanks For Feedback</p>}
+                </form>
             </div>   
         );
     }
