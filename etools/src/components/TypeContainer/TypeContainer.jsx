@@ -75,7 +75,7 @@ function TypeContainer() {
 		<div className="tm-container">
 			<img className='tmbg-img' src={TMImg} alt="background" />
 			<div className="tmimg-shadow"></div>
-			<h1>TypeMaster{userID}</h1>
+			<h1>TypeMaster</h1>
 		</div>
 		<div className="tm-main">
 			<h1>Example text: </h1>
