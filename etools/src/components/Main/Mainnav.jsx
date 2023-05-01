@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Navstyle.css';
 const Mainnav = () =>{
     /* Using useHistory hook to setting up navigations  */
     const navigate = useNavigate();
@@ -11,12 +12,9 @@ const Mainnav = () =>{
     }
     return(
         <div>
-            <nav className='nav-wrapper rgb(45, 3, 59) darken-3'>
-            <div className='container'>
-                <div className='row'>
+            <nav className='nav-wrapper'>
                     <a className='brand-logo'>E-Tools</a>
-                    <div >
-                        <ul className='right'>
+                        <ul>
                             <li>
                               <a href="/">MainPage</a>
                             </li>
@@ -27,9 +25,6 @@ const Mainnav = () =>{
                               <button className='btn' onClick={handlesignup}>signup</button>
                             </li>
                         </ul>
-                    </div>
-                </div>                
-            </div>
         </nav>
         </div>
     )

@@ -1,13 +1,10 @@
 import React from "react";
-
+import './Navstyling.css';
 const Navbar = () =>{
     return(
-        <nav className='nav-wrapper rgb(45, 3, 59) darken-3'>
-            <div className='container'>
-                <div className='row'>
+        <nav className='nav-wrapper '>
                     <a className='brand-logo'>E-Tools</a>
-                    <div >
-                        <ul className='right'>
+                        <ul>
                             <li>
                               {/*Profile page will be our default page */}
                               <a href='/'>Profile</a>
@@ -31,9 +28,6 @@ const Navbar = () =>{
                                 <a href='/ContactUs'>ContactUs</a>
                             </li>
                         </ul>
-                    </div>
-                </div>                
-            </div>
         </nav>
     );
 }
