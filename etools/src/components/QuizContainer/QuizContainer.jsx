@@ -10,6 +10,15 @@ function QuizContainer() {
   const [score, setScore] = useState(null);
   const [incorrectAnswers, setIncorrectAnswers] = useState([]);
   const [id,setID] = useState('');
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+
+const handleAnswerChange = (event, questionId) => {
+  setSelectedAnswers(prevSelectedAnswers => ({
+    ...prevSelectedAnswers,
+    [questionId]: event.target.value,
+  }));
+};
+
 
   const storedUserId = localStorage.getItem('userid');
 
@@ -17,13 +26,13 @@ function QuizContainer() {
     setDifficulty(event.target.value);
   };
 
-  const handleAnswerChange = (event, questionId) => {
-    setAnswers(prevAnswers => {
-      const newAnswers = { ...prevAnswers };
-      newAnswers[questionId] = event.target.value;
-      return newAnswers;
-    });
-  };
+  // const handleAnswerChange = (event, questionId) => {
+  //   setAnswers(prevAnswers => {
+  //     const newAnswers = { ...prevAnswers };
+  //     newAnswers[questionId] = event.target.value;
+  //     return newAnswers;
+  //   });
+  // };
   
 
   const handleSubmit = () => {
@@ -106,7 +115,7 @@ function QuizContainer() {
                       type="radio"
                       name={'question-${question.id}-${index}'}
                       value={question.option_1}
-                      valueChecked={answers[question.id] === question.option_1}
+                      checked={selectedAnswers[question.id] === question.option_1}
                       onChange={(event) => handleAnswerChange(event, question.id)}
                     />
                     {question.option_1}
@@ -116,7 +125,7 @@ function QuizContainer() {
                       type="radio"
                       name={'question-${question.id}-${index}'}
                       value={question.option_2}
-                      valueChecked={answers[question.id] === question.option_2}
+                      checked={selectedAnswers[question.id] === question.option_2}
                       onChange={(event) => handleAnswerChange(event, question.id)}
                     />
                     {question.option_2}
@@ -126,7 +135,7 @@ function QuizContainer() {
                       type="radio"
                       name={'question-${question.id}-${index}'}
                       value={question.option_3}
-                      valueChecked={answers[question.id] === question.option_3}
+                      checked={selectedAnswers[question.id] === question.option_3}
                       onChange={(event) => handleAnswerChange(event, question.id)}
                     />
                     {question.option_3}
@@ -136,7 +145,7 @@ function QuizContainer() {
                       type="radio"
                       name={'question-${question.id}-${index}'}
                       value={question.option_4}
-                      valueChecked={answers[question.id] === question.option_4}
+                      checked={selectedAnswers[question.id] === question.option_4}
                       onChange={(event) => handleAnswerChange(event, question.id)}
                     />
                     {question.option_4}
