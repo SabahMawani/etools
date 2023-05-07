@@ -55,26 +55,24 @@ class ContactUs extends Component{
     ContactUs = () =>{
         const {submitstatus,emailstatus,commentstatus,usernamestatus} = this.state ;
         return(
-            <div className='l-container'>
+            <div className='cu-container'>
                 <form onSubmit={this.handleSubmit}>
-                    <div className='l-cont'>
-                        <label htmlFor="username" >Username</label>
+                    <div className='cu-cont'>
+                        <label htmlFor="username" >UserID</label>
                         <input type="text" id="username" onChange={this.handleChange} />
-                    {/* </div> */}
+                    </div>
                     {usernamestatus && <p className='Red'>Enter Username</p>}
-                    {/* <div className='l-cont'> */}
-                    <div className='break'></div>
+                    <div className='cu-cont'>
                         <label htmlFor="Email">Email</label>
                         <input type="Email" id="email" onChange={this.handleChange} />
-                    {/* </div> */}
+                    </div>
                     {emailstatus && <p className='Red'>Enter Email</p>}
-                    <div className='break'></div>
-                    {/* <div className='l-cont'> */}
+                    <div className='cu-cont'>
                         <label htmlFor="Comment">Comment</label>
                         <input type="text" id="comment"  onChange={this.handleChange} />
                     </div>
                     {commentstatus && <p className='Red'>Enter Comment</p>}
-                    <button type="submit" className='l-btn' >Post</button>
+                    <button type="submit" className='cu-btn' >Post</button>
                     {submitstatus && commentstatus && emailstatus && usernamestatus && <p className='Green'> Thanks For Feedback</p>}
                 </form>
             </div>   

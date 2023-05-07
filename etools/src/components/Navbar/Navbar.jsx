@@ -7,8 +7,7 @@ const Navbar = () =>{
                     <a className='brand-logo'>E-Tools</a>
                         <ul>
                             <li>
-                              {/*Profile page will be our default page */}
-                              <a href='/'>Profile</a>
+                                <a href='/ContactUs'>ContactUs</a>
                             </li>
                             <li>
                               <a href='/Thesaurus'>Thesaurus</a>
@@ -26,7 +25,8 @@ const Navbar = () =>{
                               <a href='/Notes'>Notes</a>
                             </li>
                             <li>
-                                <a href='/ContactUs'>ContactUs</a>
+                              {/*Profile page will be our default page */}
+                              <a href='/'>Profile</a>
                             </li>
                         </ul>
         </nav>

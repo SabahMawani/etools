@@ -1,0 +1,26 @@
+.gn-btn {
+	background-color: rgb(45, 3, 59) ;
+  border: 1px solid rgb(31, 1, 41) ;
+  color: white ;
+  padding: 10px 24px ;
+  cursor: pointer ;
+  margin-top: 2ch ;
+  margin-bottom: 57ch ;
+  border-radius: 2ch ;
+  display: block ;
+}
+
+.gn-btn:hover {
+	background-color: rgb(208, 190, 216) ;
+	color: black ;
+}
+
+.gn-btn:active {
+	background-color: rgb(182, 103, 216) ;
+	box-shadow: 2ch ;
+	color: black ;
+}
+
+.gn-cont{
+    margin-bottom: 20%;
+}

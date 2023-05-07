@@ -19,10 +19,10 @@ const Mainnav = () =>{
                               <a href="/">MainPage</a>
                             </li>
                             <li>
-                              <button className='btn' onClick={handlelogin}>LogIn</button>
+                              <button className='mnav-btn' onClick={handlelogin}>LogIn</button>
                             </li>
                             <li>
-                              <button className='btn' onClick={handlesignup}>signup</button>
+                              <button className='mnav-btn' onClick={handlesignup}>Signup</button>
                             </li>
                         </ul>
         </nav>

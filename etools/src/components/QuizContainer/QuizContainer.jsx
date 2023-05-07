@@ -77,7 +77,7 @@ const handleAnswerChange = (event, questionId) => {
       score: totalScore,
       incorrect_answers: incorrectAnswersData,
     };
-    axios.post('http://localhost:8000/quiz/submit/', data)
+    axios.post('http://localhost:8000/submit_scores/', data)
       .then(response => {
         console.log(response);
       })
